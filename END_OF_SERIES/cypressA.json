@@ -1,0 +1,8 @@
+{
+  "projectId": "h1okgx",
+  "experimentalStudio": true,
+  "video": true,
+  "env": {
+    "REACT_APP_MOVIE_API": "fake"
+  }
+}

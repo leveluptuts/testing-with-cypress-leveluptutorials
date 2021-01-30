@@ -1,0 +1,30 @@
+name: Run Cypress Tests
+
+on: push
+
+jobs:
+  run_cypress:
+    name: Run Cypress
+    runs-on: ubuntu-16.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cypress Run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          config-file: cypressA.json
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 300
+          browser: chrome
+          headless: true
+          record: true
+          parallel: true
+        env:
+          REACT_APP_MOVIE_API: ${{ secrets.REACT_APP_MOVIE_API }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+#     - name: Deploy
+#       deploy somewhere
